@@ -1,3 +1,34 @@
+/*There are 2 students having 3 subjects each: English, Hindi, Maths
+        Write a program to give user input for their marks in each subject. The report card for each student needs to be printed on console like below:
+        Student 1:
+        Subject Marks Grade
+        English 40 C
+        Hindi 92 A+
+        Maths 61 B
+        Total 193 B
+        Pass
+
+        Student 2:
+        Subject Marks Grade
+        English 30 F
+        Hindi 80 A
+        Maths 52 B+
+        Total 162 F
+        Fail
+
+        Grading should be as follows in one subject or on total
+        Marks/Percent Grade
+        90-100 A+
+        80-89 A
+        70-79 B+
+        60-69 B
+        50-59 C+
+        40-49 C
+        0-40 F
+
+        If student gets F in any subject.he should be failed
+        */
+
 package com.student;
 
 import java.io.BufferedReader;
