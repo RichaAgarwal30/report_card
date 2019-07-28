@@ -39,6 +39,7 @@ public class StudentInfo {
     public static void main(String[] args) throws IOException {
 
         StudentInfo studentInfo = new StudentInfo();
+
         String subject1 = "English";
         String gradeInEnglish = "";
         float marksInEnglish = 0;
@@ -50,6 +51,10 @@ public class StudentInfo {
         String subject3 = "Maths";
         String gradesInMaths = "";
         float marksInMaths = 0;
+
+        String gradesInTotal = "";
+        float totalMarks = 0;
+
 
         BufferedReader br = new BufferedReader(new
                 InputStreamReader(System.in));
@@ -70,6 +75,10 @@ public class StudentInfo {
         gradesInHindi = studentInfo.calculateGrade(marksInHindi);
         gradesInMaths = studentInfo.calculateGrade(marksInMaths);
 
+        totalMarks = marksInEnglish + marksInHindi + marksInMaths;
+        gradesInTotal = studentInfo.calculateTotalGrade(gradeInEnglish, gradesInHindi, gradesInMaths, totalMarks);
+
+
         System.out.println("----------------------");
         System.out.println("Student1 :" + Student1);
         System.out.println("----------------------");
@@ -78,7 +87,11 @@ public class StudentInfo {
         System.out.println(subject1 + " " + marksInEnglish + " " + gradeInEnglish);
         System.out.println(subject2 + " " + marksInHindi + " " + gradesInHindi);
         System.out.println(subject3 + " " + marksInMaths + " " + gradesInMaths);
+
+        System.out.println("Total" + " " + totalMarks + " " + gradesInTotal);
+
     }
+
 
     public String calculateGrade(Float marks) {
         if (marks >= 90 && marks <= 100) {
@@ -97,6 +110,22 @@ public class StudentInfo {
             return String.valueOf('F');
         } else {
             return null;
+        }
+    }
+
+    public String calculateTotalGrade(String gradeInEnglish, String gradesInHindi, String gradesInMaths, float totalMarks) {
+        if (gradeInEnglish.equals("F")) {
+            return "F";
+
+        } else if (gradesInHindi.equals("F")) {
+            return "F";
+
+        } else if (gradesInMaths.equals("F")) {
+            return "F";
+        } else {
+            float percentMarks = totalMarks / 300 * 100;
+            String gradesInTotal = calculateGrade(percentMarks);
+            return gradesInTotal;
         }
     }
 }
