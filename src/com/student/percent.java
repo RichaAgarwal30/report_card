@@ -13,6 +13,7 @@ public class percent {
         int z = 0;
         int total = 0;
 
+
         BufferedReader br = new BufferedReader(new
                 InputStreamReader(System.in));
 
