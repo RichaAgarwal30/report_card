@@ -27,6 +27,7 @@ Marks/Percent Grade
 0-40 F
 
 If student gets F in any subject.he should be failed
+using for loop
 */
 
 package com.student;
@@ -41,55 +42,63 @@ public class StudentInfo {
         StudentInfo studentInfo = new StudentInfo();
 
         String subject1 = "English";
-        String gradeInEnglish = "";
-        float marksInEnglish = 0;
-
         String subject2 = "Hindi";
-        String gradesInHindi = "";
-        float marksInHindi = 0;
-
         String subject3 = "Maths";
-        String gradesInMaths = "";
-        float marksInMaths = 0;
-
-        String gradesInTotal = "";
-        float totalMarks = 0;
 
 
-        BufferedReader br = new BufferedReader(new
-                InputStreamReader(System.in));
+        int studentNumber;
 
-        System.out.print("Enter Student1 Name :");
-        String Student1 = br.readLine();
-
-        System.out.print("Enter Marks in " + subject1 + ":");
-        marksInEnglish = Float.parseFloat(br.readLine());
-
-        System.out.print("Enter Marks in " + subject2 + ":");
-        marksInHindi = Float.parseFloat(br.readLine());
-
-        System.out.print("Enter Marks in " + subject3 + ":");
-        marksInMaths = Float.parseFloat(br.readLine());
-
-        gradeInEnglish = studentInfo.calculateGrade(marksInEnglish);
-        gradesInHindi = studentInfo.calculateGrade(marksInHindi);
-        gradesInMaths = studentInfo.calculateGrade(marksInMaths);
-
-        totalMarks = marksInEnglish + marksInHindi + marksInMaths;
-        gradesInTotal = studentInfo.calculateTotalGrade(gradeInEnglish, gradesInHindi, gradesInMaths, totalMarks);
+        for (studentNumber = 0; studentNumber < 3; studentNumber++) {
 
 
-        System.out.println("----------------------");
-        System.out.println("Student1 :" + Student1);
-        System.out.println("----------------------");
-        System.out.println("Subjects" + " " + "Marks" + " " + "Grade");
+            String studentName = "";
+            String gradeInEnglish = "";
+            float marksInEnglish = 0;
+            String gradesInHindi = "";
+            float marksInHindi = 0;
+            String gradesInMaths = "";
+            float marksInMaths = 0;
+            String gradesInTotal = "";
+            float totalMarks = 0;
 
-        System.out.println(subject1 + " " + marksInEnglish + " " + gradeInEnglish);
-        System.out.println(subject2 + " " + marksInHindi + " " + gradesInHindi);
-        System.out.println(subject3 + " " + marksInMaths + " " + gradesInMaths);
+            BufferedReader br = new BufferedReader(new
+                    InputStreamReader(System.in));
 
-        System.out.println("Total" + " " + totalMarks + " " + gradesInTotal);
 
+            System.out.print("Enter Student Name : ");
+            studentName = br.readLine();
+
+            System.out.print("Enter Marks in " + subject1 + " : ");
+            marksInEnglish = Float.parseFloat(br.readLine());
+
+            System.out.print("Enter Marks in " + subject2 + " : ");
+            marksInHindi = Float.parseFloat(br.readLine());
+
+            System.out.print("Enter Marks in " + subject3 + " : ");
+            marksInMaths = Float.parseFloat(br.readLine());
+
+            gradeInEnglish = studentInfo.calculateGrade(marksInEnglish);
+            gradesInHindi = studentInfo.calculateGrade(marksInHindi);
+            gradesInMaths = studentInfo.calculateGrade(marksInMaths);
+
+            totalMarks = marksInEnglish + marksInHindi + marksInMaths;
+            gradesInTotal = studentInfo.calculateTotalGrade(gradeInEnglish, gradesInHindi, gradesInMaths, totalMarks);
+
+
+            System.out.println("----------------------");
+            System.out.println("Student:" + studentName);
+            System.out.println("----------------------");
+            System.out.println("Subjects" + " " + "Marks" + " " + "Grade");
+
+            System.out.println(subject1 + " " + marksInEnglish + " " + gradeInEnglish);
+            System.out.println(subject2 + " " + marksInHindi + " " + gradesInHindi);
+            System.out.println(subject3 + " " + marksInMaths + " " + gradesInMaths);
+
+            System.out.println("Total" + " " + totalMarks + " " + gradesInTotal);
+
+            System.out.println("--------------------------------------------------------------");
+
+        }
     }
 
 
@@ -124,8 +133,7 @@ public class StudentInfo {
             return "F";
         } else {
             float percentMarks = totalMarks / 300 * 100;
-            String gradesInTotal = calculateGrade(percentMarks);
-            return gradesInTotal;
+            return calculateGrade(percentMarks);
         }
     }
 }
