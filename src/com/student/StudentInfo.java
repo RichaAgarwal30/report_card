@@ -35,9 +35,11 @@ package com.student;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.InputMismatchException;
+import java.util.Scanner;
 
 public class StudentInfo {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws NumberFormatException, IOException {
 
         StudentInfo studentInfo = new StudentInfo();
 
@@ -45,10 +47,9 @@ public class StudentInfo {
         String subject2 = "Hindi";
         String subject3 = "Maths";
 
+        int studentNumber = 0;
 
-        int studentNumber;
-
-        for (studentNumber = 0; studentNumber < 3; studentNumber++) {
+        while (studentNumber < 3) {
 
 
             String studentName = "";
@@ -68,14 +69,11 @@ public class StudentInfo {
             System.out.print("Enter Student Name : ");
             studentName = br.readLine();
 
-            System.out.print("Enter Marks in " + subject1 + " : ");
-            marksInEnglish = Float.parseFloat(br.readLine());
+            marksInEnglish = studentInfo.getMarks("English");
 
-            System.out.print("Enter Marks in " + subject2 + " : ");
-            marksInHindi = Float.parseFloat(br.readLine());
+            marksInHindi = studentInfo.getMarks("Hindi");
 
-            System.out.print("Enter Marks in " + subject3 + " : ");
-            marksInMaths = Float.parseFloat(br.readLine());
+            marksInMaths = studentInfo.getMarks("Maths");
 
             gradeInEnglish = studentInfo.calculateGrade(marksInEnglish);
             gradesInHindi = studentInfo.calculateGrade(marksInHindi);
@@ -83,7 +81,6 @@ public class StudentInfo {
 
             totalMarks = marksInEnglish + marksInHindi + marksInMaths;
             gradesInTotal = studentInfo.calculateTotalGrade(gradeInEnglish, gradesInHindi, gradesInMaths, totalMarks);
-
 
             System.out.println("----------------------");
             System.out.println("Student:" + studentName);
@@ -98,6 +95,7 @@ public class StudentInfo {
 
             System.out.println("--------------------------------------------------------------");
 
+            studentNumber++;
         }
     }
 
@@ -136,4 +134,23 @@ public class StudentInfo {
             return calculateGrade(percentMarks);
         }
     }
+
+    public float getMarks(String subject) {
+        float marks = 0;
+        while (true) {
+            try {
+                Scanner scanner = new Scanner(System.in);
+                System.out.print("Enter marks in " + subject + ": ");
+                marks = scanner.nextFloat();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("Error: You typed the wrong marks. Marks can only be numbers. Please try again:");
+            } catch (NumberFormatException e) {
+                System.out.println("Number");
+            }
+        }
+        return marks;
+    }
 }
+
+
