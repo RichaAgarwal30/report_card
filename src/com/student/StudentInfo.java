@@ -1,3 +1,4 @@
+
 /*There are 2 students having 3 subjects each: English, Hindi, Maths
 Write a program to give user input for their marks in each subject. The report card for each student needs to be printed on console like below:
 Student 1:
@@ -43,59 +44,66 @@ public class StudentInfo {
 
         StudentInfo studentInfo = new StudentInfo();
 
+        int[] studentNumber = new int[3];
+
+
+        String[] studentName = new String[3];
+        String[] gradeInEnglish = new String[3];
+        float[] marksInEnglish = new float[3];
+        String[] gradesInHindi = new String[3];
+        float[] marksInHindi = new float[3];
+        String[] gradesInMaths = new String[3];
+        float[] marksInMaths = new float[3];
+        String[] gradesInTotal = new String[3];
+        float[] totalMarks = new float[3];
+
         String subject1 = "English";
         String subject2 = "Hindi";
         String subject3 = "Maths";
 
-        int studentNumber = 0;
-
-        while (studentNumber < 3) {
-
-
-            String studentName = "";
-            String gradeInEnglish = "";
-            float marksInEnglish = 0;
-            String gradesInHindi = "";
-            float marksInHindi = 0;
-            String gradesInMaths = "";
-            float marksInMaths = 0;
-            String gradesInTotal = "";
-            float totalMarks = 0;
+        for (int i = 0; i < studentNumber.length; i++) {
 
             BufferedReader br = new BufferedReader(new
                     InputStreamReader(System.in));
 
 
             System.out.print("Enter Student Name : ");
-            studentName = br.readLine();
 
-            marksInEnglish = studentInfo.getMarks("English");
+            studentName[i] = br.readLine();
 
-            marksInHindi = studentInfo.getMarks("Hindi");
+            marksInEnglish[i] = studentInfo.getMarks("English");
 
-            marksInMaths = studentInfo.getMarks("Maths");
+            marksInHindi[i] = studentInfo.getMarks("Hindi");
 
-            gradeInEnglish = studentInfo.calculateGrade(marksInEnglish);
-            gradesInHindi = studentInfo.calculateGrade(marksInHindi);
-            gradesInMaths = studentInfo.calculateGrade(marksInMaths);
+            marksInMaths[i] = studentInfo.getMarks("Maths");
 
-            totalMarks = marksInEnglish + marksInHindi + marksInMaths;
-            gradesInTotal = studentInfo.calculateTotalGrade(gradeInEnglish, gradesInHindi, gradesInMaths, totalMarks);
+            gradeInEnglish[i] = studentInfo.calculateGrade(marksInEnglish[i]);
+            gradesInHindi[i] = studentInfo.calculateGrade(marksInHindi[i]);
+            gradesInMaths[i] = studentInfo.calculateGrade(marksInMaths[i]);
+
+            totalMarks[i] = marksInEnglish[i] + marksInHindi[i] + marksInMaths[i];
+            gradesInTotal[i] = studentInfo.calculateTotalGrade(gradeInEnglish[i], gradesInHindi[i], gradesInMaths[i], totalMarks[i]);
+        }
+
+        for (int j = 0; j < studentName.length; j++) {
 
             System.out.println("----------------------");
-            System.out.println("Student:" + studentName);
+            System.out.println("Student:" + studentName[j]);
             System.out.println("----------------------");
-            System.out.println("Subjects" + " " + "Marks" + " " + "Grade");
+            System.out.println("Subjects" + "   " + "Marks" + "   " + "Grade");
 
-            System.out.println(subject1 + " " + marksInEnglish + " " + gradeInEnglish);
-            System.out.println(subject2 + " " + marksInHindi + " " + gradesInHindi);
-            System.out.println(subject3 + " " + marksInMaths + " " + gradesInMaths);
+            System.out.println(subject1 + "    " + marksInEnglish[j] + "    " + gradeInEnglish[j]);
+            System.out.println(subject2 + "      " + marksInHindi[j] + "    " + gradesInHindi[j]);
+            System.out.println(subject3 + "      " + marksInMaths[j] + "    " + gradesInMaths[j]);
 
-            System.out.println("Total" + " " + totalMarks + " " + gradesInTotal);
+            System.out.println("Total" + "      " + totalMarks[j] + "   " + gradesInTotal[j]);
 
-            System.out.println("--------------------------------------------------------------");
+            if (gradesInTotal[j] == "F") {
+                System.out.println("Status : Fail");
+            } else {
+                System.out.println("Status : Paas");
+            }
 
-            studentNumber++;
         }
     }
 
@@ -151,6 +159,9 @@ public class StudentInfo {
         }
         return marks;
     }
+
 }
+
+
 
 
